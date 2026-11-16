@@ -13,17 +13,17 @@ pipeline {
             }
         }
 
-        stage('Install Dependencies & Test') {
-            steps {
-                sh '''
-                    docker run --rm \
-                      --volumes-from "$HOSTNAME" \
-                      -w "$WORKSPACE" \
-                      python:3.12-slim \
-                      sh -c "pip install --no-cache-dir -r requirements.txt && python -m pytest -v"
-                '''
-            }
-        }
+       stage('Install Dependencies & Test') {
+    steps {
+        sh '''
+            docker run --rm \
+              --volumes-from "$HOSTNAME" \
+              -w "$WORKSPACE" \
+              python:3.12-slim \
+              sh -c "pip install --no-cache-dir --default-timeout=120 --retries=10 -r requirements.txt && python -m pytest -v"
+        '''
+    }
+}
 
         stage('Build Docker Image') {
             steps {
