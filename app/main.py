@@ -17,7 +17,7 @@ students = [
 @app.get("/")
 def home():
     return {
-        "message": "Welcome to Student Management API",
+        "message": "Welcome to Student Management API - v2",
         "status": "running"
     }
 
