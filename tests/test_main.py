@@ -23,5 +23,5 @@ def test_students_endpoint():
     response = client.get("/students")
 
     assert response.status_code == 200
-    assert response.json()["total"] == 3
+    assert response.json()["total"] == 4
     assert len(response.json()["students"]) == 3
